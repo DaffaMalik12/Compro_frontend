@@ -7,8 +7,11 @@ import Footer from './components/Layout/Footer';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'UPT Pusat Bahasa',
+  title: 'Pusat Pengembangan Bahasa UIN Jakarta',
   description: 'Website UPT Pusat Bahasa UIN Jakarta',
+  icons: {
+    icon: '/images/logo.ico'
+  }
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -23,7 +23,7 @@ const DataStatistik = ({ statistikData }: Props) => {
   if (!statistikData || statistikData.length === 0) {
     return null;
   }
-
+  
   return (
     <div ref={ref} className="h-full bg-[#51A3F1] py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
