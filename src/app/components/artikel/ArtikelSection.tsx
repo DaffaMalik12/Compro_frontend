@@ -25,7 +25,7 @@ export default function ArtikelSection({ berita = [] }: Props) { // Ditambahkan 
           {berita.map((beritaItem) => (
             // 👇 KARTU SEKARANG DIBUNGKUS OLEH LINK
             <Link 
-              href={`/berita/${beritaItem.slug}`} 
+              href={`/artikel/${beritaItem.slug}`} 
               key={beritaItem.id} 
               className="block w-full max-w-sm"
             >

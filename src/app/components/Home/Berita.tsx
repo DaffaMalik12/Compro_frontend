@@ -42,7 +42,7 @@ export default function ProgramSection({ berita }: Props) {
                 </div>
                 {/* Tombol akan selalu berada di bawah karena item di atasnya "tumbuh" */}
                 <Link
-                  href={`/berita/${beritaItem.slug}`}
+                  href={`/artikel/${beritaItem.slug}`}
                   className="block w-full bg-yellow-400 mt-6 hover:bg-yellow-500 text-gray-800 font-bold py-2 px-4 rounded-lg transition-colors duration-200 text-center"
                 >
                   Lihat Artikel

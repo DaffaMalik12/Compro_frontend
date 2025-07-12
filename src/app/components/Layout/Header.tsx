@@ -27,6 +27,7 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Kiri: Logo + Judul */}
           <div className="flex items-center space-x-3 md:space-x-4 flex-shrink-0">
+            <Link href="/home" className="flex items-center space-x-2">
             <Image
               src="/images/logo.png"
               alt="Logo UIN"
@@ -38,6 +39,7 @@ const Header = () => {
               <span className="text-xl md:text-2xl font-bold text-black">UPT</span>
               <span className="text-sm md:text-base text-[#5c5c5c] tracking-wide">PUSAT BAHASA</span>
             </div>
+            </Link>
           </div>
 
           {/* Desktop Menu - Hidden on mobile */}
