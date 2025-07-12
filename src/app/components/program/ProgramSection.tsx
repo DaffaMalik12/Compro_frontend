@@ -5,28 +5,34 @@ import Image from 'next/image';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 
-// Komponen Deskripsi dipisah agar bisa di-disable SSR
+// Client-only komponen untuk render HTML deskripsi
 const DeskripsiClient = dynamic(() => import('./ProgramDeskripsiClient'), { ssr: false });
 
 interface Props {
   ProgramData: Program[];
+  sortBy?: 'created' | 'updated'; // Tambahkan opsi sorting
 }
 
-export default function ProgramSection({ ProgramData = [] }: Props) {
+export default function ProgramSection({ ProgramData = [], sortBy = 'updated' }: Props) {
+  // Fungsi sorting dinamis berdasarkan pilihan
+  const sortedData = [...ProgramData].sort((a, b) => {
+    const dateA = new Date(sortBy === 'created' ? a.created_at : a.updated_at).getTime();
+    const dateB = new Date(sortBy === 'created' ? b.created_at : b.updated_at).getTime();
+    return dateB - dateA;
+  });
+
   return (
     <div className="bg-white py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* === JUDUL UTAMA === */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-800 tracking-wider">
-            Program
-          </h2>
+          <h2 className="text-3xl font-bold text-gray-800 tracking-wider">Program</h2>
           <div className="w-24 h-1 bg-yellow-400 mx-auto mt-2"></div>
         </div>
 
         {/* === CARD CONTAINER === */}
         <div className="flex flex-wrap justify-center gap-8">
-          {ProgramData.map((program) => (
+          {sortedData.map((program) => (
             <Link
               href={`/program/${program.slug}`}
               key={program.id}
@@ -48,11 +54,8 @@ export default function ProgramSection({ ProgramData = [] }: Props) {
                     <h3 className="text-xl text-gray-800 font-semibold mb-2">
                       {program.nama_program}
                     </h3>
-
-                    {/* Hanya render ini di client untuk hindari hydration mismatch */}
                     <DeskripsiClient html={program.deskripsi ?? ''} />
                   </div>
-
                   <div className="inline-block w-full bg-yellow-400 mt-6 hover:bg-yellow-500 text-gray-800 font-semibold py-2 px-4 rounded-md transition-colors duration-200">
                     Lihat Detail
                   </div>

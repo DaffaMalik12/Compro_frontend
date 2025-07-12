@@ -5,6 +5,7 @@ import { getProgram  } from "@/app/lib/programapi";
 export default async function ProgramPage() {
   const Program = await getProgram();
   return (
-    <ProgramSection ProgramData={Program} />
+    <ProgramSection ProgramData={Program} sortBy="created" />
+
   )
 }
