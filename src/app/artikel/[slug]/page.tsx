@@ -5,7 +5,7 @@ import fetchBeritaBySlug from "@/app/lib/beritaapi";
 import BeritaDetail from "@/app/components/artikel/ArtikelDetail";
 
 // ✅ Tidak usah buat custom type Props. Langsung define di param
-export default async function BacaBeritaPage({
+export default async function Page({
   params,
 }: {
   params: { slug: string };
