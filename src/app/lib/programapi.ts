@@ -19,3 +19,22 @@ export const getProgram = async (): Promise<Program[]> => {
     throw err;
   }
 };
+
+
+export default async function getProgramBySlug(slug: string): Promise<Program> {
+  try {
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/programs/${slug}`, {
+      headers: {
+        'x-api-key': process.env.NEXT_PUBLIC_API_KEY || '',
+      },
+    });
+
+    if (response.data.message && response.data.data) {
+      return response.data.data;
+    } else {
+      throw new Error('Program tidak ditemukan');
+    }
+  } catch (err) {
+    throw err;
+  }
+}

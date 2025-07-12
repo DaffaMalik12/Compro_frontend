@@ -20,7 +20,11 @@ export default function ProgramSection({ berita }: Props) {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {berita.map((beritaItem) => (
+          {berita
+          .slice()
+          .sort ((a, b) =>
+            new Date(b.tanggal_publish).getTime() - new Date(a.tanggal_publish).getTime())
+          .slice(0, 6).map((beritaItem) => (
             // 1. Card diubah menjadi flex container vertikal
             <div key={beritaItem.id} className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col transform hover:-translate-y-1 transition-transform duration-300">
               <div className="aspect-video relative">

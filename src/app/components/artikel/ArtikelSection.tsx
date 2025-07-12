@@ -22,7 +22,12 @@ export default function ArtikelSection({ berita = [] }: Props) { // Ditambahkan 
 
         {/* === CARD CONTAINER === */}
         <div className="flex flex-wrap justify-center gap-8">
-          {berita.map((beritaItem) => (
+          {berita
+          .slice()
+          .sort((a, b) =>
+            new Date(b.tanggal_publish).getTime() - new Date(a.tanggal_publish).getTime())
+          .slice(0, 6) // Ambil 6 artikel terbaru
+          .map((beritaItem) => (
             // 👇 KARTU SEKARANG DIBUNGKUS OLEH LINK
             <Link 
               href={`/artikel/${beritaItem.slug}`} 
